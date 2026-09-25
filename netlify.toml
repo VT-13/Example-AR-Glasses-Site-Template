@@ -22,3 +22,10 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "DENY"
+
+[dev]
+  command = "npm run dev:netlify -- --port 5178 --strictPort"
+  targetPort = 5178
+  port = 8888
+  framework = "#custom"
+  autoLaunch = false
