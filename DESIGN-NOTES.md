@@ -1,13 +1,25 @@
-# BLANK launch experience
+# BLANK — Design and Interaction Notes
 
-The second design replaces the editorial landing page with a scroll-driven product reveal, pointer-responsive AR environment, three workspace modes, a functioning focus timer, a digital-layer toggle, expanded viewing, and interactive product hotspots. Waitlist emails retain the existing server-backed database implementation.
+## Design direction
 
-## Generated environment asset
+The experience pairs a restrained graphite-and-neutral palette with editorial typography and an interactive product presentation. Its primary interface objective is to make the fictional product understandable and lead visitors toward the waitlist.
 
-- Saved asset: public/studio.png
-- Method: built-in imagegen
-- Prompt: Use case: photorealistic-natural. Asset type: full-screen background for premium professional AR glasses interactive website. A breathtaking but believable modern architectural studio overlooking a rugged ocean coastline through floor-to-ceiling glass. First-person eye level, cinematic very wide landscape 16:9 composition. Refined dark stone and brushed metal desk in foreground lower edge, an open blank paper sketchbook, no computers or screens. Concrete ceiling, slender structural column at left, huge uninterrupted view of distant sea and cliffs, low late-afternoon sun, slight coastal mist, subtle olive greenery outside. Quiet luxury, architectural digest editorial photograph, natural material texture, restrained warm-gray palette with rich shadows and soft gold sunlight. Center and right view open for later interface overlays. No text, no UI, no people, no logos. Photographic not futuristic.
+## Interaction design
 
-## Preview
+A scroll-driven reveal introduces the eyewear. A coastal workspace illustrates three simulated AR modes, with pointer response, a focus timer, a digital-layer toggle, and expanded viewing. Product hotspots provide concise explanations without requiring long specification tables.
 
-Run npm run build, then npm run start. Uses existing local D1 storage. Production publishing has not been completed; Sites plugin files became unavailable during the initial session.
+The interface includes responsive styling, keyboard controls for expanded viewing, and reduced-motion handling. These implementation choices do not constitute a formal accessibility audit.
+
+## Imagery and assistance
+
+The project was developed with AI assistance. `public/blank-1o.png` is generated product imagery; `public/studio.png` is a generated architectural environment. Neither is documentary photography or evidence of a manufactured device.
+
+The environment direction was a modern coastal studio with floor-to-ceiling glazing, natural materials, warm afternoon light, and open visual space for interface overlays. Interface elements are rendered by the application rather than embedded in the image.
+
+## Deployment architecture
+
+Netlify serves the Vite production build and executes the waitlist function. Netlify Blobs persists normalized email addresses under hashed keys. Duplicate submissions reuse the same record. The original Cloudflare implementation remains available for a separate local preview.
+
+## Evaluation scope
+
+The project demonstrates frontend interaction design and a persistent signup flow. Conversion performance, hardware feasibility, and user research findings have not been established.

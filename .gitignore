@@ -45,3 +45,7 @@ next-env.d.ts
 /outputs/
 /work/
 *.tsbuildinfo
+
+# Netlify output and local account state
+dist-netlify/
+.netlify/

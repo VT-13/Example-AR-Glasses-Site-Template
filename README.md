@@ -1,31 +1,45 @@
-# BLANK — Beyond the screen
+# BLANK 1O — Interactive AR Product Experience
 
-An interactive launch website for **BLANK 1O**, a fictional premium AR eyewear product.
+An interactive product-launch concept for a fictional premium augmented-reality eyewear brand. BLANK explores how motion, spatial interface design, and restrained visual storytelling can explain an unfamiliar product and guide visitors toward a waitlist signup.
 
 ## Experience
 
-- Scroll-driven product reveal and pointer-responsive product presentation.
-- Coastal AR workspace with Create, Focus, and Explore modes.
-- Live focus timer, digital-layer toggle, and expanded view.
-- Interactive product details, responsive layouts, and reduced-motion support.
-- Server-backed waitlist with email validation and duplicate protection.
+- Scroll-driven product reveal and pointer-responsive presentation.
+- Simulated AR workspace with Create, Focus, and Explore modes.
+- Working focus timer, digital-layer toggle, and expanded viewing mode.
+- Interactive product hotspots, responsive layouts, keyboard controls, and reduced-motion support.
+- Server-validated email signup with persistent storage and duplicate protection.
 
-## Stack
+The AR interface is a browser-based simulation. This project does not include physical eyewear, optical tracking, or a shipping product.
 
-React 19, TypeScript, Vinext/Vite, Tailwind CSS, Radix UI, Lucide icons, Cloudflare Workers, Cloudflare D1, and Drizzle migrations.
+## Technical approach
 
-## Local development
+React 19 and TypeScript manage the interactive state. CSS, requestAnimationFrame, and IntersectionObserver coordinate motion. Tailwind CSS, Radix UI, and Lucide support styling and interface elements.
 
-Requires Node.js 22.13 or newer.
+The Netlify deployment uses a Vite client build, a serverless signup function, and Netlify Blobs storage. The original Vinext/Cloudflare implementation is retained separately with a D1 database and Drizzle migration.
+
+## Run locally
+
+Requires Node.js 24 and npm.
 
 ```sh
 npm ci
-npm run dev
+npm run dev:netlify
 ```
 
-Open the local URL printed by the development server.
+This starts the visual experience. To exercise the Netlify signup function locally, use `npx netlify-cli dev` after linking a Netlify project. A standalone Vite server does not provide the signup API.
 
-## Preview with a working local waitlist
+## Build and deploy to Netlify
+
+```sh
+npm run build:netlify
+npx netlify-cli login
+npx netlify-cli deploy --prod --dir dist-netlify --functions netlify/functions --no-build
+```
+
+`netlify.toml` defines the publish directory, build command, and API routing. Netlify provisions access to the site's Blobs store for deployed functions. Emails are stored server-side; there is no public endpoint for reading signups. Automated email delivery, administrative tools, and advanced abuse prevention are outside the current scope.
+
+## Original Cloudflare preview
 
 ```sh
 npm run build
@@ -33,16 +47,10 @@ node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1
 npm start
 ```
 
-Apply the migration once per new local database. The built preview normally runs at http://127.0.0.1:8787.
+Apply the migration once per new local database. This path uses the original Cloudflare runtime and is independent of the Netlify build.
 
-## Deployment
+## Project context and assets
 
-The site needs a Cloudflare Workers-compatible runtime and a D1 database bound as `DB`. Apply the checked-in Drizzle migration before accepting waitlist submissions. The original Sites integration remains in the build configuration, but account-specific project identity is intentionally omitted from this repository.
+This is an AI-assisted design and development project. Product and environment imagery was AI-generated for the concept; design notes are in [DESIGN-NOTES.md](DESIGN-NOTES.md). The repository documents implemented behavior without claiming measured conversion improvements or real hardware capabilities.
 
-GitHub hosts this source code. GitHub Pages alone cannot run the server-backed waitlist.
-
-## Assets and data
-
-Product and environment imagery is included in `public/` and was generated for this fictional concept. See `DESIGN-NOTES.md` for design and image-generation details. Local waitlist records, environment files, dependency directories, and generated build output are excluded.
-
-No real eyewear specifications, launch date, or commercial availability are represented.
+BLANK is fictional. No commercial availability, technical eyewear specifications, or launch date is represented. Submitted emails are saved for this concept's waitlist demonstration; the application does not send marketing emails.
